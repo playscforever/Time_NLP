@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 16:27
 # @Author  : zhm
-# @File    : RangeTimeEnum.py
+# @File    : range_time_enum.py
 # @Software: PyCharm
 
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 17:01
 # @Author  : zhm
-# @File    : TimeUnit.py
+# @File    : time_unit.py
 # @Software: PyCharm
 # @Changed : tianyuningmou
 
@@ -10,13 +10,13 @@
 import regex as re
 import arrow
 import copy
-from TimePoint import TimePoint
-from RangeTimeEnum import RangeTimeEnum
+from cntm.time_point import TimePoint
+from cntm.range_time_enum import RangeTimeEnum
 
 try:
-    from LunarSolarConverter.LunarSolarConverter import *
+    from cntm.lunar_solar_converter import *
 except:
-    from LunarSolarConverter import *
+    from cntm.lunar_solar_converter import *
 
 
 # 时间语句分析

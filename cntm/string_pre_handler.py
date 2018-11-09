@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 15:42
 # @Author  : zhm
-# @File    : StringPreHandler.py
+# @File    : string_pre_handler.py
 # @Software: PyCharm
 import regex as re
 

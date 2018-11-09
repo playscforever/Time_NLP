@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/12/11 11:08
 # @Author  : zhm
-# @File    : LunarSolarConverter.py
+# @File    : lunar_solar_converter.py
 # @Software: PyCharm
 from pprint import pprint
 

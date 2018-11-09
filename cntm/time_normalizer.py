@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 16:39
 # @Author  : zhm
-# @File    : TimeNormalizer.py
+# @File    : time_normalizer.py
 # @Software: PyCharm
 import pickle
 import regex as re
@@ -10,9 +10,9 @@ import arrow
 import json
 import os
 
-from StringPreHandler import StringPreHandler
-from TimePoint import TimePoint
-from TimeUnit import TimeUnit
+from cntm.string_pre_handler import StringPreHandler
+from cntm.time_point import TimePoint
+from cntm.time_unit import TimeUnit
 
 # 时间表达式识别的主要工作类
 class TimeNormalizer:
