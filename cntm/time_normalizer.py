@@ -85,6 +85,7 @@ class TimeNormalizer:
         self.invalidSpan = False
         self.timeSpan = ''
         self.target = self._filter(target)
+        # TODO 处理半小时 N个半小时之类的
         self.timeBase = arrow.get(timeBase).format('YYYY-M-D-H-m-s')
         self.nowTime = timeBase
         self.oldTimeBase = self.timeBase

@@ -5,7 +5,7 @@
 # @File    : test.py
 # @Software: PyCharm
 # @Changed : tianyuningmou
-
+import re
 from cntm.time_normalizer import TimeNormalizer # 引入包
 
 tn = TimeNormalizer()
@@ -38,9 +38,31 @@ def origin_test():
 
 
 def new_test():
-    res = tn.parse(target=u'下午4点')
+    # res = tn.parse(target=u'3个半小时后')
+    # print(res)
+    res = tn.parse(target=u'十分钟后')
     print(res)
 
+
+def half_repl(m):
+    result = 0
+    if m.group(1):
+        result = int(m.group(1))
+    result = result * 60 + 30
+    return str(result) + '分钟'
+
+def test_re():
+    msg = '2半个小时后'
+    msg = re.sub("(\d*)(半个?小时)", half_repl, msg)
+    print(msg)
+
+    msg = '半天后'
+    msg = re.sub("(\d*)(半个?小时)", half_repl, msg)
+    print(msg)
+    # res = tn.parse(target=msg)
+    # print(res)
+
 if __name__ == "__main__":
-    origin_test()
     new_test()
+    # test_re()
+
