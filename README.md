@@ -1,3 +1,7 @@
+## Usage
+
+pip3 install chinatime
+
 ## 简介
 Time-NLP的python3版本   
 python 版本https://github.com/sunfiyes/Time-NLPY  

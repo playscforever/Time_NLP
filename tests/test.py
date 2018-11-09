@@ -38,7 +38,7 @@ def origin_test():
 
 
 def new_test():
-    res = tn.parse(target=u'下午3点')
+    res = tn.parse(target=u'下午4点')
     print(res)
 
 if __name__ == "__main__":
