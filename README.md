@@ -2,6 +2,10 @@
 
 pip3 install chinatime
 
+or
+
+pip3 install chinatime -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+
 ## 功能说明
 用于句子中时间词的抽取和转换  
 详情请见test.py
