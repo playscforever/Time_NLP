@@ -208,7 +208,7 @@ class TimeUnit:
             self.tp.tunit[3] = int(match.group())
             # print('first', self.tp.tunit[3] )
             # 处理倾向于未来时间的情况
-            self.preferFuture(3)
+            # self.preferFuture(3)
             self.isAllDayTime = False
 
         # * 对关键字：早（包含早上/早晨/早间），上午，中午,午间,下午,午后,晚上,傍晚,晚间,晚,pm,PM的正确时间计算
