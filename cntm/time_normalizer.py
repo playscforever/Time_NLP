@@ -15,6 +15,26 @@ from cntm.time_point import TimePoint
 from cntm.time_unit import TimeUnit
 
 
+def half_repl(m):
+    result = 0
+    if m.group(1):
+        result = int(m.group(1))
+    result = result * 60 + 30
+    return str(result) + '分钟'
+
+
+# 一些特处理
+def custom_parse(input_query):
+    input_query = input_query.replace('一会', '20分钟')
+    input_query = input_query.replace('1会', '20分钟')
+    input_query = input_query.replace('等下', '20分钟')
+    input_query = input_query.replace('等会', '20分钟')
+    input_query = input_query.replace('等1会', '20分钟')
+    input_query = input_query.replace('等1下', '20分钟')
+    input_query = re.sub("(\d*)(半个?小时)", half_repl, input_query)
+    return input_query
+
+
 # 时间表达式识别的主要工作类
 class TimeNormalizer:
     def __init__(self, isPreferFuture=True):
@@ -86,7 +106,9 @@ class TimeNormalizer:
         self.invalidSpan = False
         self.timeSpan = ''
         self.target = self._filter(target)
-        # TODO 处理半小时 N个半小时之类的
+        # TODO 处理半小时 N个半小时之类的 done
+        self.target = custom_parse(self.target)
+
         self.timeBase = arrow.get(timeBase).format('YYYY-M-D-H-m-s')
         self.nowTime = timeBase
         self.oldTimeBase = self.timeBase
