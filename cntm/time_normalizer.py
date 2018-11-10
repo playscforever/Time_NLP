@@ -9,10 +9,11 @@ import regex as re
 import arrow
 import json
 import os
-
+import datetime
 from cntm.string_pre_handler import StringPreHandler
 from cntm.time_point import TimePoint
 from cntm.time_unit import TimeUnit
+
 
 # 时间表达式识别的主要工作类
 class TimeNormalizer:
@@ -104,17 +105,21 @@ class TimeNormalizer:
                 # print(dic['timedelta'])
                 index = dic['timedelta'].find('days')
 
-                days = int(dic['timedelta'][:index-1])
+                days = int(dic['timedelta'][:index - 1])
                 result['year'] = int(days / 365)
                 result['month'] = int(days / 30 - result['year'] * 12)
                 result['day'] = int(days - result['year'] * 365 - result['month'] * 30)
                 index = dic['timedelta'].find(',')
-                time = dic['timedelta'][index+1:]
+                time = dic['timedelta'][index + 1:]
                 time = time.split(':')
                 result['hour'] = int(time[0])
                 result['minute'] = int(time[1])
                 result['second'] = int(time[2])
-                dic['timedelta'] = result
+                dic['timedelta'] = datetime.timedelta(days=result['year'] * 365 + result['day'],
+                                                      hours=result['hour'],
+                                                      minutes=result['minute'],
+                                                      seconds=result['second']
+                                                      )
         else:
             if len(res) == 0:
                 dic['error'] = 'no time pattern could be extracted.'
@@ -124,7 +129,7 @@ class TimeNormalizer:
             else:
                 dic['type'] = 'timespan'
                 dic['timespan'] = [res[0].time.format("YYYY-MM-DD HH:mm:ss"), res[1].time.format("YYYY-MM-DD HH:mm:ss")]
-        return json.dumps(dic)
+        return dic
 
     def __preHandling(self):
         """
@@ -161,7 +166,7 @@ class TimeNormalizer:
         # 时间上下文： 前一个识别出来的时间会是下一个时间的上下文，用于处理：周六3点到5点这样的多个时间的识别，第二个5点应识别到是周六的。
         contextTp = TimePoint()
         print(self.timeBase)
-        print('temp',temp)
+        print('temp', temp)
         for i in range(0, rpointer):
             # 这里是一个类嵌套了一个类
             res.append(TimeUnit(temp[i], self, contextTp))
