@@ -14,7 +14,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="chinatime",
-    version="1.0.5",
+    version="1.0.6",
     keywords=("time", "nlp", "china"),
     description="Analysis China time in sentence",
     long_description=long_description,

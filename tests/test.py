@@ -8,9 +8,9 @@
 import re
 from cntm.time_normalizer import TimeNormalizer  # 引入包
 from datetime import datetime
-
+import time
 tn = TimeNormalizer()
-
+format_string = "%Y-%m-%d %H:%M:%S"
 
 def origin_test():
     res = tn.parse(target=u'我需要大概33天2分钟四秒', timeBase='2013-02-28 16:30:29')  # target为待分析语句，timeBase为基准时间默认是当前时间
@@ -33,8 +33,16 @@ def test_half():
     print(tn.parse(target='半个小时后'))
     print(tn.parse(target='两个半个小时后'))
     print(tn.parse(target='过一会'))
-    print(datetime.now() + tn.parse(target='两个半个小时后')['timedelta'])
+    target_time = datetime.now() + tn.parse(target='两个半个小时后')['timedelta']
+    print(target_time.strftime(format_string))
+
+
+
+def date_to_timestamp(date, format_text=format_string):
+    time_array = time.strptime(date, format_text)
+    time_stamp = int(time.mktime(time_array))
+    return time_stamp
 
 
 if __name__ == "__main__":
-    test_time_base()
+    test_half()
