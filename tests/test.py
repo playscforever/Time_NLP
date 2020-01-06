@@ -36,6 +36,9 @@ def test_half():
     target_time = datetime.now() + tn.parse(target='两个半个小时后')['timedelta']
     print(target_time.strftime(format_string))
 
+def test_houtian():
+    print(tn.parse(target='后天晚上7点提醒测试'))
+    print(tn.parse(target='后天晚上提醒测试'))
 
 
 def date_to_timestamp(date, format_text=format_string):
